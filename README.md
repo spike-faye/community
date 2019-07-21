@@ -15,7 +15,7 @@
 
 ##脚本
 ```sql
-CREATE TABLE `user` (
+CREATE TABLE USER (
   `id` int NOT NULL AUTO_INCREMENT,
   `account_id` varchar(100) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
