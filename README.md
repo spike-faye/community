@@ -8,10 +8,14 @@
 [Bootstrap 文档](https://v3.bootstrap.com/getting-started/)
 [Github OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
 [Springboot 官方文档](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/)
+[Thymeleaf官方文档](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.pdf)
+[菜鸟教程](https://www.runoob.com/mysql/mysql-insert-query.html)
 
 ## 工具
 [Git](https://git-scm.com/download)
 [Visual Paradigm](https://www.visual-paradigm.com)
+[Flyway](https://flywaydb.org/)
+[Lombok](https://www.projectlombok.org/)
 
 ##脚本
 ```sql
