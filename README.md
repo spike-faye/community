@@ -29,3 +29,7 @@ CREATE TABLE USER (
   PRIMARY KEY (`id`)
 )
 ```
+```bash
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
