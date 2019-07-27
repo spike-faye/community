@@ -23,7 +23,6 @@ public class CustomizeErrorController implements ErrorController {
 
     @RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView errorHtml(HttpServletRequest request,
-                                  HttpServletResponse response,
                                   Model model) {
         HttpStatus status = getStatus(request);
         if (status.is4xxClientError()){

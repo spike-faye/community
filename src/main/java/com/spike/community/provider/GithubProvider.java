@@ -6,8 +6,8 @@ import com.spike.community.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
+import javax.net.ssl.SSLContext;
 import java.io.IOException;
-
 @Component
 public class GithubProvider {
 
