@@ -35,6 +35,31 @@ body {
     margin-top: 30px;
 }
 
+.question-tag{
+    margin-right: 5px;
+}
+
+.question-related{
+    line-height: 20px;
+    font-size: 12px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.question-zhengyige{
+    width: 100%;
+}
+
+.publish-tag-tab{
+    display: none;
+    margin-top:10px;
+    padding-top: 10px;
+}
+
+.publish-tag-tab .label-info{
+    margin-right: 10px;
+
+}
 
 .community-menu {
     color: #999;
@@ -85,9 +110,18 @@ body {
 }
 
 .menu .icon {
-    margin-right: 7px;
+    margin-right: 15px;
     font-size: 15px;
     cursor: pointer;
+}
+
+.menu .comment-icon{
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon:hover {
+    color: #499ef3;
 }
 
 .menu .active{
