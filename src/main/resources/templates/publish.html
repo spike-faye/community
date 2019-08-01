@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/community.css"/>
+    <link rel="stylesheet" href="/css/editormd.min.css"/>
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/community.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -25,12 +27,26 @@
                            placeholder="问题标题..."
                            autocomplete="off">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="question-editor">
                     <label for="description">问题补充(必填，请参照右边提示):</label>
-                    <textarea name="description" id="description" th:text="*{description}" class="form-control"
+                    <textarea name="description" id="description" th:text="${description}" style="display:none;"
+                              class="form-control"
                               cols="30"
                               rows="10"></textarea>
                 </div>
+                <script type="text/javascript">
+                    $(function() {
+                        var editor = editormd("question-editor", {
+                            width  : "100%",
+                            height : 350,
+                            path   : "/js/lib/",
+                            delay  : 0,
+                            watch  : false,
+                            placeholder  : "输入对问题的描述，准确地描述问题更容易得到解答",
+                            saveHTMLToTextarea  : true
+                        });
+                    });
+                </script>
                 <div class="form-group">
                     <label for="tag">添加标签:</label>
                     <input type="text" class="form-control" th:value="*{tag}" id="tag" name="tag"
@@ -39,7 +55,7 @@
                            onclick="showSelectTag()">
                     <div id="select-tag" class="publish-tag-tab">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" th:each="selectCategory : ${tags}">
+                            <li role="presentation" th:each="selectCategory : ${tags}" th:class="${selectCategoryStat.first ? 'active' : ''}">
                                 <a th:href="${'#'+selectCategory.categoryName}" aria-controls="home" role="tab"
                                    data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
                             </li>
@@ -47,15 +63,16 @@
 
 
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane" th:id="${selectCategory.categoryName}"
-                                 th:each="selectCategory : ${tags}">
+                            <div role="tabpanel" th:id="${selectCategory.categoryName}"
+                                 th:each="selectCategory : ${tags}"
+                                 th:class="${selectCategoryStat.first ? 'active tab-pane' : 'tab-pane'}">
                                 <span>
                                 <span class="label label-info" th:each="selectTag : ${selectCategory.tags}">
-                                    <span class="glyphicon glyphicon-tags"
+                                    <span class="glyphicon glyphicon-tag"
                                           onclick="selectTag(this)" th:data-tag="${selectTag}"
-                                          th:text="${selectTag}"></span>
+                                          th:text="${' '+selectTag}"></span>
                                 </span>
-                                pub</span>
+                                </span>
                             </div>
                         </div>
                     </div>
