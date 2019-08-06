@@ -13,7 +13,6 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria()

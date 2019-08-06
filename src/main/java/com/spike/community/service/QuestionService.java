@@ -2,6 +2,7 @@ package com.spike.community.service;
 
 import com.spike.community.dto.PaginationDTO;
 import com.spike.community.dto.QuestionDto;
+import com.spike.community.dto.QuestionQueryDTO;
 import com.spike.community.exception.CustomizeErrorCode;
 import com.spike.community.exception.CustomizeException;
 import com.spike.community.mapper.QuestionExtMapper;
@@ -16,11 +17,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,11 +33,17 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search,Integer page, Integer size) {
+        if (StringUtils.isNotBlank(search)){
+            search = StringUtils.replace(search," ","|");
+        }
+
         PaginationDTO<QuestionDto> paginationDTO = new PaginationDTO<>();
         Integer totalPage;
 
-        Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
 
         if(totalCount % size == 0){
             totalPage = totalCount / size;
@@ -55,11 +59,10 @@ public class QuestionService {
         }
 
         paginationDTO.setPagination(totalPage,page);
-        //偏移量
         Integer offset = size * (page - 1);
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDto> questionDtoList = new ArrayList<>();
 
         for (Question question : questions) {

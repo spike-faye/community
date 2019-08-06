@@ -19,12 +19,12 @@ public class TagCache {
 
         TagDTO framework = new TagDTO();
         framework.setCategoryName("开发框架");
-        framework.setTags(Arrays.asList("laravelspring","express","django","flask","yii","ruby-on-rails","tornado","koa","struts"));
+        framework.setTags(Arrays.asList("laravelspring","spring","express","django","flask","yii","ruby-on-rails","tornado","koa","struts"));
         tagDTOS.add(framework);
 
         TagDTO server = new TagDTO();
         server.setCategoryName("服务器");
-        server.setTags(Arrays.asList("linux","nginx","docker","apache","ubuntu","centos","缓存","tomcat","负载均衡","unix","hadoop","windows-server"));
+        server.setTags(Arrays.asList("linux","nginx","docker","apache","ubuntu","centos","tomcat","unix","hadoop","windows-server"));
         tagDTOS.add(server);
 
         TagDTO db= new TagDTO();
