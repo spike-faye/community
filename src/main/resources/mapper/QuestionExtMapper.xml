@@ -50,7 +50,7 @@
         and title regexp #{search}
       </if>
     </where>
-    order by gmt_create DESC limit #{page},#{size}
+    order by gmt_create desc limit #{page},#{size}
   </select>
 
 </mapper>

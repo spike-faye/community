@@ -39,10 +39,12 @@ public class QuestionService {
         }
 
         PaginationDTO<QuestionDto> paginationDTO = new PaginationDTO<>();
+
         Integer totalPage;
 
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
+
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
 
         if(totalCount % size == 0){
