@@ -103,8 +103,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.4</version>
                 <configuration>
-                    <url>jdbc:mysql://rm-bp1x986136zar46wm6o.mysql.rds.aliyuncs.com
-                        :3306/spike</url>
+                    <url>jdbc:mysql://rm-bp1x986136zar46wm6o.mysql.rds.aliyuncs.com:3306/spike</url>
                     <user>root</user>
                     <password>Spike123456</password>
                 </configuration>
