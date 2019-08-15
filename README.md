@@ -7,6 +7,7 @@
 - Maven
 - MySQL
 ### 步骤
+- ssh root@117.50.59.94
 - yum update
 - yum install git
 - mkdir App

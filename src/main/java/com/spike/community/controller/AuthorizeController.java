@@ -2,7 +2,6 @@ package com.spike.community.controller;
 
 import com.spike.community.dto.AccessTokenDTO;
 import com.spike.community.dto.GithubUser;
-import com.spike.community.mapper.UserMapper;
 import com.spike.community.model.User;
 import com.spike.community.provider.GithubProvider;
 import com.spike.community.service.UserService;
@@ -41,7 +40,7 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletResponse response){
+                           HttpServletResponse response) throws Exception {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirect_uri(redirectUri);
