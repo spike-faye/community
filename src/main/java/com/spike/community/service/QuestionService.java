@@ -33,9 +33,9 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO list(String search,Integer page, Integer size) {
-        if (StringUtils.isNotBlank(search)){
-            search = StringUtils.replace(search," ","|");
+    public PaginationDTO list(String search, Integer page, Integer size, String tag) {
+        if (StringUtils.isNotBlank(search)) {
+            search = StringUtils.replace(search, " ", "|");
         }
 
         PaginationDTO<QuestionDto> paginationDTO = new PaginationDTO<>();
@@ -44,23 +44,24 @@ public class QuestionService {
 
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
+        questionQueryDTO.setTag(tag);
 
         Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
 
-        if(totalCount % size == 0){
+        if (totalCount % size == 0) {
             totalPage = totalCount / size;
-        }else {
+        } else {
             totalPage = totalCount / size + 1;
         }
 
-        if(page<1){
+        if (page < 1) {
             page = 1;
         }
-        if (page>totalPage){
+        if (page > totalPage) {
             page = totalPage;
         }
 
-        paginationDTO.setPagination(totalPage,page);
+        paginationDTO.setPagination(totalPage, page);
         Integer offset = page < 1 ? 0 : size * (page - 1);
         questionQueryDTO.setSize(size);
         questionQueryDTO.setPage(offset);
@@ -86,22 +87,22 @@ public class QuestionService {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(userId);
-        Integer totalCount = (int)questionMapper.countByExample(questionExample);
+        Integer totalCount = (int) questionMapper.countByExample(questionExample);
 
-        if(totalCount % size == 0){
+        if (totalCount % size == 0) {
             totalPage = totalCount / size;
-        }else {
+        } else {
             totalPage = totalCount / size + 1;
         }
 
-        if(page<1){
+        if (page < 1) {
             page = 1;
         }
-        if (page>totalPage){
+        if (page > totalPage) {
             page = totalPage;
         }
 
-        paginationDTO.setPagination(totalPage,page);
+        paginationDTO.setPagination(totalPage, page);
 
         //偏移量
         Integer offset = size * (page - 1);
@@ -128,7 +129,7 @@ public class QuestionService {
 
     public QuestionDto getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
-        if (question == null){
+        if (question == null) {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUNT);
         }
         QuestionDto questionDto = new QuestionDto();
@@ -139,7 +140,7 @@ public class QuestionService {
     }
 
     public void createOrUpdate(Question question) {
-        if(question.getId() == null){
+        if (question.getId() == null) {
             //创建
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
@@ -147,7 +148,7 @@ public class QuestionService {
             question.setLikeCount(0);
             question.setCommentCount(0);
             questionMapper.insert(question);
-        }else {
+        } else {
             //更新
             question.setGmtModified(System.currentTimeMillis());
             Question updateQuestion = new Question();
@@ -159,7 +160,7 @@ public class QuestionService {
             example.createCriteria()
                     .andIdEqualTo(question.getId());
             int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
-            if (updated != 1){
+            if (updated != 1) {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUNT);
             }
         }
@@ -174,10 +175,10 @@ public class QuestionService {
 
 
     public List<QuestionDto> selectRelated(QuestionDto queryDTO) {
-        if (StringUtils.isBlank(queryDTO.getTag())){
+        if (StringUtils.isBlank(queryDTO.getTag())) {
             return new ArrayList<>();
         }
-        String tags = StringUtils.replace(queryDTO.getTag(),",","|");
+        String tags = StringUtils.replace(queryDTO.getTag(), ",", "|");
         Question question = new Question();
         question.setId(queryDTO.getId());
         question.setTag(tags);
@@ -185,7 +186,7 @@ public class QuestionService {
         List<Question> questions = questionExtMapper.selectRelated(question);
         List<QuestionDto> questionDtos = questions.stream().map(q -> {
             QuestionDto questionDto = new QuestionDto();
-            BeanUtils.copyProperties(q,questionDto);
+            BeanUtils.copyProperties(q, questionDto);
             return questionDto;
         }).collect(Collectors.toList());
         return questionDtos;

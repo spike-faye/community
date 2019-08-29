@@ -11,11 +11,11 @@
 </head>
 <script type="application/javascript">
     window.onload = function () {
-      var closable = window.localStorage.getItem("closable");
-      if(closable == "true"){
-        window.close();
-        window.localStorage.removeItem("closable");
-      }
+        var closable = window.localStorage.getItem("closable");
+        if (closable == "true") {
+            window.close();
+            window.localStorage.removeItem("closable");
+        }
     }
 </script>
 <body>
@@ -44,27 +44,26 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:if="${pagination.showFirstPage}">
-                        <a href="/?page=1,search=${search}" aria-label="Previous">
+                        <a th:href="@{/(page=1,search=${search},tag=${tag})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showPrevious}">
-                        <a th:href="@{/(page=${pagination.page - 1},search=${search})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.page - 1},search=${search},tag=${tag})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}? 'active' : ''">
-                        <a th:href="@{/(page=${page},search=${search})}" th:text="${page}">
-
+                        <a th:href="@{/(page=${page},search=${search},tag=${tag})}" th:text="${page}">
                         </a>
                     </li>
                     <li th:if="${pagination.showNext}">
-                        <a th:href="@{/(page=${pagination.page + 1},search=${search})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.page + 1},search=${search},tag=${tag}}" aria-label="Previous">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showEndPage}">
-                        <a th:href="@{/(page=${pagination.totalPage},search=${search})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.totalPage},search=${search},tag=${tag})}" aria-label="Previous">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
@@ -75,7 +74,21 @@
             <!--展示图片-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>快来提问啊</h4>
-                <img src="/images/zhengyige.jpg"  class="img-thumbnail question-zhengyige">
+                <img src="/images/zhengyige.jpg" class="img-thumbnail question-zhengyige">
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>
+                    <span class="glyphicon glyphicon-fire">
+                    热门话题
+                    </span>
+                </h4>
+                <ul class="question-related">
+                    <li th:each="tag : ${tags}">
+                        <a class="btn btn-default" th:href="@{/(page=1,search=${search},tag=${tag})}" th:text="${tag}"></a>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
