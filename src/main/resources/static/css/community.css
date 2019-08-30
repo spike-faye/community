@@ -40,10 +40,14 @@ body {
 }
 
 .question-related{
-    line-height: 20px;
+    line-height: normal;
     font-size: 12px;
     padding-left: 0;
     list-style: none;
+}
+
+.question-related .side-btn{
+    margin-bottom: 5px;
 }
 
 .question-zhengyige{

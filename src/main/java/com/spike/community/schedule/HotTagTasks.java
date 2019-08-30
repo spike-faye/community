@@ -29,6 +29,7 @@ public class HotTagTasks {
         int offset = 0;
         int limit = 5;
         log.info("HotTagSchedule start at {}", new Date());
+
         List<Question> list = new ArrayList<>();
         //priorities记录各个标签及其对应的权重
         Map<String, Integer> priorities = new HashMap<>();
@@ -46,14 +47,11 @@ public class HotTagTasks {
                         priorities.put(tag,5 + question.getCommentCount());
                     }
                 }
-
-                log.info("Questions list : {}", question.getId());
             }
 
             offset += limit;
         }
         hotTagCache.updateTags(priorities);
-
         log.info("HotTagSchedule end at {}", new Date());
     }
 }
