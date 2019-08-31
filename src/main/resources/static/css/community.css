@@ -7,6 +7,14 @@ body {
     background-color: white;
 }
 
+.main .video{
+    padding: 30px;
+}
+
+.main .video img{
+    width: 100%;
+}
+
 .btn-publish {
     float: right;
     margin-bottom: 10px;

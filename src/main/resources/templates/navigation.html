@@ -17,6 +17,11 @@
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+                <ul class="nav navbar-nav">
+                    <li><a href="/videos"
+                           onclick="gtag('event', 'click', {'event_category': 'LINK','event_label': 'VIDEO','transport_type': 'NAV'})">教学视频</a>
+                    </li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right" >
                     <li th:if="${session.user != null}">
                         <a href="/publish">提问</a>

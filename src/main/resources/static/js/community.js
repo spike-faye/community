@@ -31,7 +31,6 @@ function comment2target(targetId, type, content) {
                     var isAccepted = confirm(response.message);
                     if (isAccepted) {
                         window.open("https://github.com/login/oauth/authorize?client_id=7824dab5040d3c26f282&redirect_uri=http://localhost:8887/callback&scope=user&state=1");
-                        debugger;
                         window.localStorage.setItem("closable", true);
                     }
                 } else {
