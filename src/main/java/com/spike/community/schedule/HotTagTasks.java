@@ -24,6 +24,7 @@ public class HotTagTasks {
     private HotTagCache hotTagCache;
 
     @Scheduled(cron = "0 0 5 * * *")
+//    @Scheduled(fixedRate = 15000)
     public void hotTagSchedule() {
 
         int offset = 0;
@@ -48,7 +49,6 @@ public class HotTagTasks {
                     }
                 }
             }
-
             offset += limit;
         }
         hotTagCache.updateTags(priorities);

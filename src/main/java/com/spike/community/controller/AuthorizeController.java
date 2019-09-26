@@ -38,6 +38,7 @@ public class AuthorizeController {
     private String redirectUri;
 
     @GetMapping("/callback")
+    //@RequestParam用来获取URL的参数(请求路径：http://www.xxx.com/item?user=john，参数就是?后面的user=john)
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
                            HttpServletResponse response) throws Exception {

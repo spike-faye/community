@@ -1,8 +1,6 @@
 package com.spike.community.controller;
 
-import com.spike.community.dto.NotificationDTO;
 import com.spike.community.dto.PaginationDTO;
-import com.spike.community.model.Notification;
 import com.spike.community.model.User;
 import com.spike.community.service.NotificationService;
 import com.spike.community.service.QuestionService;

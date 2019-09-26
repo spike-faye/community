@@ -1,6 +1,8 @@
 /**
  * 提交回复
  */
+
+
 function post() {
     var questionId = $("#question_id").val();
     var content = $("#comment_content").val();
@@ -133,3 +135,12 @@ function selectTag(e) {
         }
     }
 }
+
+
+function like() {
+    
+}
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+})

@@ -25,6 +25,7 @@ public class CommentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
+    //@RequestBody仅限用于POST方法,将接收到的JSON数据反序列化为对象
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request){
 
@@ -46,6 +47,7 @@ public class CommentController {
         comment.setCommentator(user.getId());
         comment.setLikeCount(0L);
         commentService.insert(comment,user);
+        //返回请求体
         return ResultDTO.OkOf();
     }
 

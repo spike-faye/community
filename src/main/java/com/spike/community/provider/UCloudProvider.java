@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.util.UUID;
 
+//UCloud对象存储
 @Service
 public class UCloudProvider {
     @Value("${ucloud.ufile.public-key}")

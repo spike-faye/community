@@ -8,29 +8,32 @@
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
     <div class="row">
-        <!--左侧边栏-->
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-            <h3>视频选集    <span class="glyphicon glyphicon-th-list"></span></h3>
-            <ul class="question-related">
-                <li>
-                    <a th:href="@{/video(aid=${aid},page=1)}">P1  开篇介绍</a>
-                </li>
-                <li>
-                    <a th:href="@{/video(aid=${aid},page=2)}">P2  快速搭建Spring Boot项目</a>
-                </li>
-            </ul>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="min-height: 500px;padding: 30px;">
+                    <iframe th:src="@{//player.bilibili.com/player.html(aid=${aid},page=${page})}" scrolling="no"
+                            border="0" frameborder="no" framespacing="0" allowfullscreen="true"
+                            style="width: 100%;min-height: 500px;"></iframe>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        视频选集 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/video(aid=${aid},page=1)}">P1  开篇介绍</a></li>
+                        <li><a th:href="@{/video(aid=${aid},page=2)}">P2  快速搭建Spring Boot项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                <h4><span class="glyphicon glyphicon-book" aria-hidden="true">视频笔记</span></h4>
+                <div style="height: 500px;overflow-y: scroll">
+                    adasdasdasasd
+                </div>
+            </div>
         </div>
-
-        <!--右侧边栏-->
-        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="min-height: 500px;padding: 30px;">
-                <iframe th:src="@{//player.bilibili.com/player.html(aid=${aid},page=${page})}" scrolling="no"
-                        border="0" frameborder="no" framespacing="0" allowfullscreen="true"
-                        style="width: 100%;min-height: 500px;"></iframe>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-            </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4>评论区</h4>
         </div>
     </div>
 </div>

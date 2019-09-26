@@ -18,6 +18,10 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @GetMapping("/notification/{id}")
+    /*
+    @PathVariable可以将URL中占位符参数绑定到控制器处理方法的入参中
+    这里可以把id绑定到占位符参数{id}中
+    */
     public String profile(HttpServletRequest request,
                           @PathVariable(name = "id") Long id) {
 

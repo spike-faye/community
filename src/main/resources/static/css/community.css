@@ -130,6 +130,7 @@ body {
 .menu .comment-icon{
     font-size: 15px;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .menu .comment-icon:hover {
